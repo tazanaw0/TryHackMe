@@ -5,7 +5,7 @@ Learning Objectives
 	Learn about Kibana Query Language (KQL) and how it can be used to investigate logs using ELK.
 		Used to query and analyze data in Elasticsearch. 
 	Learn about RCE (Remote Code Execution), and how this can be done via insecure file upload.
-
+		Remote access to vulnerable systems as a result of weak input validation. 
 Starting w/ ELK
 	Kibana 
 		Search bar: Enter queries using KQL
@@ -80,10 +80,14 @@ Practical
 ![[Pasted image 20250119171537.png]]
 ![[Pasted image 20250119171727.png]]
 Before the attack, I created a shell.php file containing the code mentioned earlier in the room that executes a web shell when ran
-Then, I navigated to the website's admin console by appending /admin to the url. From here, I created a new room that will allow us to upload input to the webserver.
-	ADD Image
-
-After uploading the file, I found the link by selecting 'copy image link' where it was supposed to be. 
+Then, I navigated to the website's admin console, created a new room and uploaded the shell.php file where the website is expecting a photo of the new room. 
+I discovered the link by selecting 'copy image link' on another photo, then modified the path to open shell.php. 
 ![[Pasted image 20250119174350.png]]
 
 
+Since the question is requesting information about flag.txt, I ran 'ls' to locate the file.
+	![[Pasted image 20250120135522.png]]
+Lastly, I used cat to output the text in the web shell. 
+	![[Pasted image 20250120135617.png]]
+
+![[Pasted image 20250120135716.png]]
