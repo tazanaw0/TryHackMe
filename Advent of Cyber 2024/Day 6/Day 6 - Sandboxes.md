@@ -11,8 +11,10 @@ Detecting Sandboxes
 	![[Pasted image 20250125170406.png]]
 
 Can YARA Do It?
-	YARA searches for patterns to identify and classify malware. Analysts can create custom rules for YARA to search for and process such as particular strings, headers, etc.
+	YARA uses patterns to identify and classify malware. Analysts can create custom YARA rules to search for and process headers, strings, etc.
 ![[Pasted image 20250125170757.png]]
-	Mayor Malware's wrote a script to test the effectiveness of YARA's detection rules pictured above. 
+	Pictured is a YARA rule that executes every time a user tries to access the registry. 
+	They've declared a variable in 'strings' with a value the rule will search for. Condition defines values in which an alert will be triggered for. 
 
-	
+![[Pasted image 20250126144101.png]]
+	We were tasked with executing "MerryChristmas.exe" and waiting for our EDR tool to identify any events involving a query to windows registry. Shortly after executing the script, our EDR detected an event which matches the "SANDBOXDETECTED" rule and logged it to a text file dubbed 'YaraMatches.' 
