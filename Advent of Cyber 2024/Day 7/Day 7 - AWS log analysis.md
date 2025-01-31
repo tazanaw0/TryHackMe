@@ -43,4 +43,12 @@ Completing the investigation
 ![[Pasted image 20250130144517.png]]
 	User 'Glitch' initiated a session around 3PM on the 28th of November. They ran "ListObjects" function to list every object stored in S3 from a Linux machine. Lastly, we see s3 logged the ip address associated with the event as 53.94.201.69. 
 ![[Pasted image 20250130145255.png]]
-	In addition to running 'ListObjects,' Glitch ran 'PutObject' indicating they successfully uploaded a file to wareville's s3 bucket. There's information regarding the device and browser used to execute this function + the contents of which objects were 'Put' or uploaded into the bucket dubbed 'wareville-care4wares.'
+	In addition to running 'ListObjects,' t ran 'PutObject' indicating they successfully uploaded a file to wareville's s3 bucket. There's information regarding the device and browser used to execute this function + the contents of which objects were 'Put' or uploaded into a bucket dubbed 'wareville-care4wares.'
+![[Pasted image 20250131132448.png]]
+![[Pasted image 20250131132504.png]]
+	Here we've filtered the logs to only display 6 fields. 
+	![[Screenshot 2025-01-31 at 1.31.46 PM.png]]
+	![[Pasted image 20250131132910.png]]
+	Based on our findings, it's very likely glitch is responsible for warevilles missing donations. 
+	![[Pasted image 20250131133930.png]]
+	After entering a command to filter out information not involving the glitch. 
