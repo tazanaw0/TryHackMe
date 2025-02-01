@@ -49,6 +49,45 @@ Completing the investigation
 	Here we've filtered the logs to only display 6 fields. 
 	![[Screenshot 2025-01-31 at 1.31.46 PM.png]]
 	![[Pasted image 20250131132910.png]]
-	Based on our findings, it's very likely glitch is responsible for warevilles missing donations. 
+	Based on our findings, it's very likely glitch is responsible for warevilles missing donations. McSkidy doesn't recall createing 'glitch,' so we'll have to investigate further and review the account's activity. 
 	![[Pasted image 20250131133930.png]]
-	After entering a command to filter out information not involving the glitch. 
+	Filtering out any information unrelated to Glitch. 
+	'ConsoleLogin' event informs us that Glitch accessed the AWS Management Console. 
+	![[Pasted image 20250201125949.png]]
+	Included the user_agent field, which will give us information about the OS and browser behind each event. 
+	Glitch access the AWS management console via Google Chrome from an Apple device. 
+	The other value beginning with 'S3Console/0.4....' is the userAgent string for the internal console used in AWS. 
+	
+Looking into who created the account
+	Filtering for IAM related events
+- What Event Names are included in the log entries?
+- What user executed these events?
+- What is this user’s IP?
+![[Pasted image 20250201131022.png]]
+	First, we notice the source_ip for mcskidy is the exact same as glitch. Additionally, we notice mcskidy invoked the CreateUser action and AttatchUserPolicy action. 
+![[Pasted image 20250201131500.png]]
+	Filtering the query to show information regarding the CreateUser event. 
+	We've confirmed McSkidy created the glitch account on the 22nd of October at 3:21 PM. 
+What permissions does the glitch have?
+	We'll run the same command but change the eventName field to 'AttachUserPolicy.' AttachUserPolicy applies access policies to users, defining the extent of access to the account.
+	![[Pasted image 20250201132053.png]]
+	Wow. McSkidy granted admin access as shown in the 'policyArn' field. It can't be McSkidy because uses a Windows machine and all of her previous activity originated from a different source IP address. Someone must have gained access to her account. 
+![[Pasted image 20250201132452.png]]
+	Mayor malware accessed McSkidy's s3 bucket from the same IP as the glitch on several occasions. Hmm. 
+	Lets view each user's activity before the attack and see who truly works from that IP address. 
+![[Pasted image 20250201133459.png]]
+	Prior to the attack, McSkidy's login activity came from a different IP, 31.210.15.79. We've also verified McSkidy works with Windows OS. So, this leaves mayor_malware as a possible suspect for carrying out the phishing attack. 
+Breakdown of events
+	Unusual login with McSkidy's account originating from 53.94.201.69 
+	53.94.201.69 creates glitch account shortly after, then grants admin access. 
+	53.94.201.69 (glitch) accessed warevilles bucket and replaced the donation flyer with a new one. 
+	The IP and user_agent used to access every account was the same throughout the event. 
+	++ Confirmed McSkidy's activity outside of this timeframe are from a different agent and ip address. 
+
+Definite Evidence
+	McSKidy reached out to the bank and they were able to provide us with their RDS logs stored from CloudWatch. 
+	![[Pasted image 20250201135108.png]]
+	We can see the exact moment when mayor malware updated the flyer and care4wares stopped receiving donations. Additionally, we see that all donations intended for McSkidy's fundraiser are sent to Mayor Malware's bank account. 
+
+![[Pasted image 20250201141054.png]]
+We've gained valuable experience working with JQ, AWS CloudTrail and CloudWatch. JQ enables efficient log analysis and we were able to create a timeline of events by narrowing down our queries to only include whatever's pertinent to the investigation. 
