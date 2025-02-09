@@ -6,7 +6,7 @@ Learning Objectives
 
 Wi-Fi Attacks
 	Evil Twin Attack:
-		Typically begins by sending victims de-authentication packets, which disconnects them from their trusted access point(ap). Attacker creates fake ap with an ssid similar to the victims (typosquatting, e.g., FrostburgStaff-> Fr0stburgStaff) Ideally, after multiple attempts reconnecting to the trusted ap, the attacker expects the victim to try their fake ap, so they can listen to all of the victims traffic. 
+		Typically begins by sending victims de-authentication packets, which disconnects them from their trusted access point(ap). Attacker creates fake ap with an ssid similar to the victims (typosquatting, e.g., FrostburgStaff-> Fr0stburgStaff Ideally, after multiple attempts reconnecting to the trusted ap, the attacker expects the victim to try their fake ap, so they can listen to all of the victims traffic. 
 	Rogue Access Point:
 		Similar to Evil Twin, the attacker configures a rogue access point near their targets and waits for them to accidentally join, so they can intercept traffic. 
 	Wi-Fi Protected Setup Attack (WPS):
