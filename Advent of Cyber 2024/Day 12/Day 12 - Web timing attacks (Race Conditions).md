@@ -43,8 +43,8 @@ Initiating the race condition attack by resending our transfer (post) request
 		After sending 10 requests, I checked 110's account and their balance reflects the exploitation of Wareville's race condition vulnerability. 
 	- In a secure banking system, the app should process the first request, lock the database and process the remaining request individually. 
 Practical 
-	Preventative measures"
-		- **Use Atomic Transactions**: The developer should have implemented atomic database transactions to ensure that all steps of a fund transfer (deducting and crediting balances) are performed as a single unit. This would ensure that either all steps of the transaction succeed or none do, preventing partial updates that could lead to an inconsistent state.
-		- **Implement Mutex Locks**: By using Mutex Locks, the developer could have ensured that only one thread accesses the shared resource (such as the account balance) at a time. This would prevent multiple requests from interfering with each other during concurrent transactions.
+	Preventative measures
+		- **Use Atomic Transactions**: The developer should have implemented atomic database transactions to ==ensure that all steps of a fund transfer== (deducting and crediting balances) are performed as a single unit. This would ensure that  ==either all steps of the transaction succeed or none do==, preventing partial updates that could lead to an inconsistent state.
+		- **Implement Mutex Locks**: By using Mutex Locks, the developer could have ensured that ==only one thread accesses the shared resource==(such as the account balance) at a time. This would ==prevent multiple requests from interfering with each other during concurrent transactions.==
 		- **Apply Rate Limits**: The developer should have implemented rate limiting on critical functions like funds transfers and withdrawals. This would limit the number of requests processed within a specific time frame, reducing the risk of abuse through rapid, repeated requests.
 	
