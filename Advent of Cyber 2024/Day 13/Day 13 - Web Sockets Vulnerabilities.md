@@ -21,4 +21,10 @@ WebSocket vulnerabilities
 		Denial of Service(DoS)
 			Solution: Rate-limiting
 Practical 
-	Stopped here, website wouldn't load, so I couldn't move forward with analyzing requests/responses in burp suite. 
+	 03/02
+		Stopped here, website wouldn't load, so I couldn't move forward with analyzing requests/responses in burp suite. 
+	![[Pasted image 20250303133945.png]]
+	Changed the user ID from #5 to #8
+	Manipulating web socket vulnerability by sending a message and changing the user_id associated with it. 
+	![[Pasted image 20250303134453.png]]
+	usrer_Id 5 -> 8
